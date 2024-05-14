@@ -2,10 +2,11 @@ from typing import List, Dict, Set
 import pandas as pd
 
 
-#######################################################################################################################
-# 1. Create a list containing dictionaries that represent information about people. Each dictionary should have the keys
-# "name" and "age". Then create a function that takes this list and returns a list of names of people who are older than
-# 25 years.
+###############################################################################
+# 1. Create a list containing dictionaries that represent information about 
+# people. Each dictionary should have the keys "name" and "age". Then create a 
+# function that takes this list and returns a list of names of people who are 
+# older than 25 years.
 
 persons = [
     {
@@ -30,9 +31,9 @@ def age_filter(persons: List[Dict]) -> List[Dict]:
 
 print(age_filter(persons))
 
-#######################################################################################################################
-# 2. Create a function that takes two sets of numbers and returns a set containing only those numbers that
-# appear in both the first and second sets.
+###############################################################################
+# 2. Create a function that takes two sets of numbers and returns a set 
+# containing only those numbers that appear in both the first and second sets.
 
 set_1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
 set_2 = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
@@ -40,9 +41,9 @@ set_2 = {0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20}
 sets_intersection = set_1 & set_2
 print(sets_intersection)
 
-#######################################################################################################################
-# 3. Create a nested list that contains lists of numbers. Write a function that calculates the sum
-# all numbers in this nested list.
+###############################################################################
+# 3. Create a nested list that contains lists of numbers. Write a function that
+# calculates the sum all numbers in this nested list.
 
 test_numbers = [1, 2, 3, 4.0]
 
@@ -56,10 +57,11 @@ numbers_sum = sum([sum(number) for number in numbers])
 
 print(numbers_sum)
 
-#######################################################################################################################
-# 4. We have a list of dictionaries representing product information (keys: "name", "price",
-# "quantity"). Write a function that generates a dictionary from this list, in which the key is the name
-# product, and the value is the total price of this product (price * quantity).
+###############################################################################
+# 4. We have a list of dictionaries representing product information (keys: 
+# "name", "price", "quantity"). Write a function that generates a dictionary 
+# from this list, in which the key is the name product, and the value is the 
+# total price of this product (price * quantity).
 
 products = [
     {
@@ -112,36 +114,40 @@ def products_value(products: List[Dict]) -> List[Dict]:
 
 print(products_value(products))
 
-#######################################################################################################################
-# 5. Create a list of dictionaries representing books (keys: "title", "author", "year"). Write
-# a function that sorts this list of books alphabetically by title.
+###############################################################################
+# 5. Create a list of dictionaries representing books (keys: "title", "author",
+# "year"). Write a function that sorts this list of books alphabetically by 
+# title.
 
 def sort_books_by_title(books: List[Dict]) -> List[Dict]:
     return sorted(books, key=lambda book: book["title"])
 
 
 books = [
-    {"title": "W pustyni i w puszczy", "author": "Henryk Sienkiewicz", "year": 1911},
+    {
+        "title": "W pustyni i w puszczy", 
+        "author": "Henryk Sienkiewicz", 
+        "year": 1911
+    },
     {"title": "Pan Tadeusz", "author": "Adam Mickiewicz", "year": 1834},
     {"title": "Lalka", "author": "Bolesław Prus", "year": 1890},
     {"title": "Potop", "author": "Henryk Sienkiewicz", "year": 1886}
 ]
-
 sorted_books = sort_books_by_title(books)
 print(sorted_books)
 
-#######################################################################################################################
-# 6. Create a function that takes a list of numbers and returns a set containing only unique numbers
-# even numbers from this list.
+###############################################################################
+# 6. Create a function that takes a list of numbers and returns a set 
+# containing only unique numbers even numbers from this list.
 
 numbers = [0, 0, 2, 3, 4, 4, 5, 6, 7, 8, 9, 10, 11]
 uniq_nums = list(set(numbers))
 uniq_even_nums = [number for number in uniq_nums if number%2 == 0]
 print(uniq_even_nums)
 
-#######################################################################################################################
-# 7. Create a nested list where each item is a list of numbers. Write a function that returns
-# list of sums of each nested list.
+###############################################################################
+# 7. Create a nested list where each item is a list of numbers. Write a 
+# function that returns list of sums of each nested list.
 
 numbers = [
     [1, 2, 3, 4.0],
@@ -152,10 +158,11 @@ numbers = [
 numbers_sum = [sum(number) for number in numbers]
 print(numbers_sum)
 
-#######################################################################################################################
-# 8. We have a list of dictionaries representing exam results (keys: "name", "subject", "score").
-# Write a function that generates a dictionary from this list, in which the keys are items and the values are
-# are the average results in a given subject.
+###############################################################################
+# 8. We have a list of dictionaries representing exam results (keys: "name", 
+# "subject", "score"). Write a function that generates a dictionary from this 
+# list, in which the keys are items and the values are are the average results 
+# in a given subject.
 
 exam_results = [
     {"name": "Jan Kowalski", "subject": "Matematyka", "score": 75},
@@ -166,13 +173,15 @@ exam_results = [
 ]
 
 exam_results_df = pd.DataFrame(exam_results)
-average_scores_by_subject = exam_results_df.groupby('subject')['score'].mean().reset_index()
-average_scores_dict = average_scores_by_subject.set_index('subject').to_dict()['score']
+average_scores_by_subject = exam_results_df.groupby(
+    'subject')['score'].mean().reset_index()
+average_scores_dict = average_scores_by_subject.set_index(
+    'subject').to_dict()['score']
 print(average_scores_dict)
 
-#######################################################################################################################
-# 9. Create a function that takes a list of words and returns a set of all the letters that appear in those
-# words.
+###############################################################################
+# 9. Create a function that takes a list of words and returns a set of all the 
+# letters that appear in those words.
 
 words = ['kot', 'dupa', 'zakładka']
 
@@ -185,10 +194,11 @@ def uniq_characters(words: List[str]) -> Set[str]:
 
 print(uniq_characters(words))
 
-#######################################################################################################################
-# 10. Create a nested list that contains dictionaries that represent student information
-# (keys: "name", "grades"). Write a function that calculates the grade point average for each student i
-# returns a list of dictionaries with students' names and their average grades
+###############################################################################
+# 10. Create a nested list that contains dictionaries that represent student 
+# information (keys: "name", "grades"). Write a function that calculates the 
+# grade point average for each student i returns a list of dictionaries with 
+# students' names and their average grades
 
 students = [
     {"name": "Anna", "grades": [4.5, 3.0, 5.0]},
@@ -197,6 +207,8 @@ students = [
 ]
 
 students_df = pd.DataFrame(students)
-students_df['average_grade'] = students_df['grades'].apply(lambda x: sum(x) / len(x))
-students_average_grades = students_df[['name', 'average_grade']].to_dict('records')
+students_df['average_grade'] = students_df['grades'].apply(
+    lambda x: sum(x) / len(x))
+students_average_grades = students_df[['name', 'average_grade']].to_dict(
+    'records')
 print(students_average_grades)
