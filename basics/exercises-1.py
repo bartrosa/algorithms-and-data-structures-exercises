@@ -183,7 +183,7 @@ print(average_scores_dict)
 # 9. Create a function that takes a list of words and returns a set of all the 
 # letters that appear in those words.
 
-words = ['kot', 'dupa', 'zakładka']
+words = ['kot', 'pies', 'myszka', 'ananas']
 
 
 def uniq_characters(words: List[str]) -> Set[str]:

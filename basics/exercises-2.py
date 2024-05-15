@@ -22,36 +22,43 @@
 #
 
 ###############################################################################
-# 5. We have a list of dictionaries representing exam results (keys: "name", "subject", "score"). Write a function
-# that generates a dictionary from this list in which the keys are subjects and the values are average scores in
-# a given subject. results = [ {"name": "John", "subject": "Math", "score": 85}, {"name": "Alice", "subject": "Math",
-# "score": 90} , {"name": "Bob", "subject": "Science", "score": 75}, {"name": "Alice", "subject": "Science",
+# 5. We have a list of dictionaries representing exam results (keys: "name", 
+# "subject", "score"). Write a function that generates a dictionary from this 
+# list in which the keys are subjects and the values are average scores in a 
+# given subject. results = [ {"name": "John", "subject": "Math", "score": 85}, 
+# {"name": "Alice", "subject": "Math", "score": 90} , {"name": "Bob", 
+# "subject": "Science", "score": 75}, {"name": "Alice", "subject": "Science",
 # "score": 80}, { "name": "John", "subject": "Math", "score": 95} ]
 #
 
 ###############################################################################
-# 6 Create a function that takes a list of words and returns the set of all the letters that appear in those words.
+# 6 Create a function that takes a list of words and returns the set of all the
+# letters that appear in those words.
 #
 
 ###############################################################################
-# 7. Create a nested list that contains dictionaries representing student information (keys: "name", "grades").
-# Write a function that calculates the grade point average for each student and returns a list of dictionaries with
-# the students' names and their grade point averages. students = [ {"name": "John", "grades": [85, 90, 88]},
-# {"name": "Alice", "grades": [75, 80, 82]}, {"name" ": "Bob", "grades": [92, 88, 90]}, {"name": "Eve", "grades":
-# [78, 85, 80]} ]
+# 7. Create a nested list that contains dictionaries representing student 
+# information (keys: "name", "grades"). Write a function that calculates the 
+# grade point average for each student and returns a list of dictionaries with 
+# the students' names and their grade point averages. students = [ {"name": 
+# "John", "grades": [85, 90, 88]}, {"name": "Alice", "grades": [75, 80, 82]}, 
+# {"name" ": "Bob", "grades": [92, 88, 90]}, {"name": "Eve", "grades": [78, 85, 
+# 80]} ]
 #
 
 ###############################################################################
-# 8 Create a function that takes a list of words and returns a default dictionary where the keys are word lengths and
-# the values are lists of words of a given length.
+# 8 Create a function that takes a list of words and returns a default 
+# dictionary where the keys are word lengths and the values are lists of words 
+# of a given length.
 #
 
 ###############################################################################
-# 9 Create a function that accepts text and returns a dictionary in which the keys are unique letters and the values of
-# their occurrences in the text
+# 9 Create a function that accepts text and returns a dictionary in which the 
+# keys are unique letters and the values of their occurrences in the text
 #
 
 ###############################################################################
-# 10 Define a NamedTuple called Person that has the fields "name", "age" and "gender". Write a function that creates
-# a list of people and returns the average age for a given gender.
+# 10 Define a NamedTuple called Person that has the fields "name", "age" and 
+# "gender". Write a function that creates a list of people and returns the 
+# average age for a given gender.
 #
