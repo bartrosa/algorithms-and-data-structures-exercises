@@ -1,45 +1,44 @@
 from abc import ABC, abstractmethod
 
-
-class Vehicle(ABC):
+class Car(ABC):
     @abstractmethod
-    def drive(self):
+    def operation(self) -> str:
         pass
 
+class Sedan(Car):
+    def operation(self) -> str:
+        return "Producing a Sedan"
 
-class Car(Vehicle):
-    def drive(self):
-        return "Driving a car"
+class SUV(Car):
+    def operation(self) -> str:
+        return "Producing an SUV"
 
-
-class Bike(Vehicle):
-    def drive(self):
-        return "Riding a bike"
-
-
-class VehicleFactory(ABC):
+class CarFactory(ABC):
     @abstractmethod
-    def create_vehicle(self):
+    def factory_method(self) -> Car:
         pass
+    
+    def create_car(self) -> str:
+        car = self.factory_method()
+        result = f"CarFactory:The factory has created a car: {car.operation()}"
+        return result
 
+class SedanFactory(CarFactory):
+    def factory_method(self) -> Car:
+        return Sedan()
 
-class CarFactory(VehicleFactory):
-    def create_vehicle(self):
-        return Car()
+class SUVFactory(CarFactory):
+    def factory_method(self) -> Car:
+        return SUV()
 
-
-class BikeFactory(VehicleFactory):
-    def create_vehicle(self):
-        return Bike()
-
-
-def vehicle_client(factory: VehicleFactory):
-    vehicle = factory.create_vehicle()
-    print(vehicle.drive())
-
+def client_code(factory: CarFactory) -> None:
+    print(f"Client:I'm not aware of the factory's class, but it still works.\n"
+          f"{factory.create_car()}", end="")
 
 if __name__ == "__main__":
-    car_factory = CarFactory()
-    bike_factory = BikeFactory()
-    vehicle_client(car_factory)
-    vehicle_client(bike_factory)
+    print("App: Launched with the SedanFactory.")
+    client_code(SedanFactory())
+    print("\n")
+
+    print("App: Launched with the SUVFactory.")
+    client_code(SUVFactory())

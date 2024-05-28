@@ -1,10 +1,144 @@
 
-
 numbers = [1, 2, 3, 4, 5]
 
 ###############################################################################
-# C
+# A
+###############################################################################
+# Association -     a relationship between classes where one class uses or 
+# interacts with another class. Unlike composition, association does not imply 
+# ownership. There are two main types of associations: aggregation and 
+# composition.
 
+class Address:
+    def __init__(self, street, city, postal_code):
+        self.street = street
+        self.city = city
+        self.postal_code = postal_code
+
+    def get_full_address(self):
+        return f"{self.street}, {self.city}, {self.postal_code}"
+
+class Person:
+    def __init__(self, name, age, address=None):
+        self.name = name
+        self.age = age
+        self.address = address  # Association: Person has an Address
+
+    def set_address(self, address):
+        self.address = address
+
+    def get_person_info(self):
+        if self.address:
+            return f"Name: {self.name}, Age: {self.age}, Address: {self.address.get_full_address()}"
+        else:
+            return f"Name: {self.name}, Age: {self.age}, Address: Not Provided"
+
+# Create an address
+address = Address(street="123 Main St", city="Springfield", postal_code="12345")
+
+# Create a person and associate them with the address
+person = Person(name="John Doe", age=30, address=address)
+
+# Get person info
+print(person.get_person_info())
+
+# Create another person without an address initially
+another_person = Person(name="Jane Doe", age=28)
+
+# Set address for the second person
+another_person.set_address(address)
+
+# Get person info
+print(another_person.get_person_info())
+
+
+###############################################################################
+# C
+###############################################################################
+# classmethod -     a method that is bound to the class and not the instance of
+# the class. It can be called on the class itself or on an instance of the 
+# class. The first parameter of a class method is the class itself, which is 
+# conventionally named cls.
+
+class MyClass:
+    class_variable = "Hello"
+
+    def __init__(self, value):
+        self.instance_variable = value
+
+    @classmethod
+    def class_method(cls):
+        print(f"Class method called. cls.class_variable = {cls.class_variable}")
+
+    @classmethod
+    def create_with_default(cls):
+        return cls("Default Value")
+
+# Calling class method
+MyClass.class_method()
+
+# Creating an instance using the class method
+instance = MyClass.create_with_default()
+print(instance.instance_variable)
+
+###############################################################################
+# Composition -     a design principle where a class is composed of one or more
+#  objects of other classes, meaning it contains instances of other classes as 
+# attributes. This allows for building complex objects by combining simpler 
+# objects, promoting code reuse and modular design.
+
+class Engine:
+    def __init__(self, horsepower, type):
+        self.horsepower = horsepower
+        self.type = type
+
+    def start(self):
+        return f"The {self.type} engine with {self.horsepower} horsepower starts."
+
+class Tire:
+    def __init__(self, brand, size):
+        self.brand = brand
+        self.size = size
+
+    def inflate(self):
+        return f"Inflating the {self.size} inch {self.brand} tire."
+
+class Car:
+    def __init__(self, make, model, engine, tires):
+        self.make = make
+        self.model = model
+        self.engine = engine  # Composition: Car has an Engine
+        self.tires = tires    # Composition: Car has Tires
+
+    def start(self):
+        return self.engine.start()
+
+    def inflate_tires(self):
+        return [tire.inflate() for tire in self.tires]
+
+# Create an engine
+engine = Engine(horsepower=300, type="V6")
+
+# Create tires
+tires = [
+    Tire(brand="Michelin", size=18),
+    Tire(brand="Michelin", size=18),
+    Tire(brand="Michelin", size=18),
+    Tire(brand="Michelin", size=18)
+]
+
+# Create a car with the engine and tires
+car = Car(make="Toyota", model="Camry", engine=engine, tires=tires)
+
+# Start the car
+print(car.start())
+
+# Inflate the car tires
+for inflate_message in car.inflate_tires():
+    print(inflate_message)
+
+
+###############################################################################
 # Comprehensions -  concise way to create containers such as lists, 
 # dictionaries, sets, and even generators. They provide a readable and 
 # expressive way to create new sequences based on existing sequences, applying 
@@ -18,6 +152,7 @@ squares_gen = (x**2 for x in range(10)) # Generator
 for square in squares_gen:
     print(square)
 
+###############################################################################
 # Context manager - a programming construct that provides explicit support for 
 # the with statement, ensuring that resources are properly managed. For example
 # when working with files, a context manager guarantees that the file will be 
@@ -64,7 +199,66 @@ with managed_file('example.txt') as file:
 
 ###############################################################################
 # D
+###############################################################################
+# dataclass -   a decorator that automatically generates special methods like 
+# __init__, __repr__, __eq__, and others for user-defined classes. This 
+# simplifies the creation of classes that primarily store data. 
 
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+    city: str
+
+# Create an instance of Person
+person = Person(name="John Doe", age=30, city="Springfield")
+
+# Accessing the attributes
+print(person.name)  # Output: John Doe
+print(person.age)   # Output: 30
+print(person.city)  # Output: Springfield
+
+# Using the auto-generated __repr__ method
+print(person)  # Output: Person(name='John Doe', age=30, city='Springfield')
+
+# Using the auto-generated __eq__ method
+person2 = Person(name="John Doe", age=30, city="Springfield")
+print(person == person2)  # Output: True
+
+#
+
+from dataclasses import dataclass, field
+from typing import List
+
+@dataclass
+class Person:
+    name: str
+    age: int = 0
+    city: str = "Unknown"
+    hobbies: List[str] = field(default_factory=list)
+
+    def add_hobby(self, hobby: str):
+        self.hobbies.append(hobby)
+
+# Create an instance with default values
+person = Person(name="Jane Doe")
+
+# Add hobbies
+person.add_hobby("Reading")
+person.add_hobby("Hiking")
+
+# Accessing the attributes and hobbies
+print(person.name)    # Output: Jane Doe
+print(person.age)     # Output: 0
+print(person.city)    # Output: Unknown
+print(person.hobbies) # Output: ['Reading', 'Hiking']
+
+# Using the auto-generated __repr__ method
+print(person)  # Output: Person(name='Jane Doe', age=0, city='Unknown', hobbies=['Reading', 'Hiking'])
+
+###############################################################################
 # Decorators -  tool that allows you to modify the behavior of a function or a 
 # class. It is a higher-order function that takes another function or a class 
 # as an argument and returns a function or a class. 
@@ -151,7 +345,33 @@ def singleton(cls):
 @singleton
 class Database:
     pass
+###############################################################################
+# Directive -       a statement or command that provides instructions to the 
+# Python interpreter. These directives can influence the behavior of the 
+# interpreter or specify certain features to be used in the code. 
+# Examples:
 
+# Import Statements:
+import math
+from datetime import datetime
+
+# Shebang Line:
+#!/usr/bin/env python3
+
+# Encoding Declaration:
+# -*- coding: utf-8 -*-
+
+# Future Imports:
+from __future__ import division, print_function
+
+# Type Hints:
+def add(x: int, y: int) -> int:
+    return x + y
+
+# Magic Comments: 
+# type: ignore
+
+###############################################################################
 # Dunder methods -      special methods that are preceded and followed by 
 # double underscores (e.g., __init__, __str__). They are also known as magic 
 # methods. These methods are used to override or provide specific 
@@ -288,7 +508,7 @@ class ExampleDunderClass:
 
 ###############################################################################
 # G
-
+###############################################################################
 # Generator -   a type of iterable, like a list or a tuple, but unlike lists, 
 # generators don't store all their values in memory at once. Instead, they 
 # generate values on the fly as needed, which allows them to be more 
@@ -309,7 +529,7 @@ for num in counter:
 
 ###############################################################################
 # M
-
+###############################################################################
 # map()         function applies a specified function to each item of an 
 # iterable (like list or tuple) and returns an iterator that  provides the 
 # results. This function is often used for transforming data. 
@@ -320,6 +540,7 @@ def square(x):
 squared_numbers = map(square, numbers)
 print(list(squared_numbers))
 
+###############################################################################
 # Metaclass -    a class of a class, meaning it defines how a class behaves. A 
 # class itself is an instance of a metaclass. The default metaclass in Python 
 # is type. Metaclasses allow you to modify the creation and behavior of classes
@@ -338,8 +559,45 @@ g = Greeter()
 print(g.hello())
 
 ###############################################################################
-# R
+# P
+###############################################################################
+# Protocol -    a way to define a set of methods and properties that a class 
+# must implement, without requiring the class to explicitly inherit from a base
+# class. This concept is similar to interfaces in languages like Java and C#. 
+# Protocols provide a way to specify that a class adheres to a certain 
+# behavior, promoting polymorphism and allowing for more flexible and 
+# maintainable code.
 
+from typing import Protocol
+
+# Define a protocol
+class Animal(Protocol):
+    def make_sound(self) -> None:
+        ...
+
+# Implementing classes do not need to inherit from the protocol, but must implement the required methods
+class Dog:
+    def make_sound(self) -> None:
+        print("Bark")
+
+class Cat:
+    def make_sound(self) -> None:
+        print("Meow")
+
+# Function that accepts any object that adheres to the Animal protocol
+def make_animal_sound(animal: Animal) -> None:
+    animal.make_sound()
+
+# Instances of Dog and Cat can be passed to the function because they adhere to the protocol
+dog = Dog()
+cat = Cat()
+
+make_animal_sound(dog)  # Outputs: Bark
+make_animal_sound(cat)  # Outputs: Meow
+
+###############################################################################
+# R
+###############################################################################
 # reduce()      used to apply a given function cumulatively to the items of an 
 # iterable, optionally starting with an initial value, to reduce the iterable 
 # to a single value. This function is useful for performing computations that 
@@ -355,7 +613,7 @@ print(result)
 
 ###############################################################################
 # T
-
+###############################################################################
 # Type hints -  a way of explicitly specifying the expected data types of 
 # variables, function parameters, and function return values. 
 
