@@ -34,7 +34,9 @@ class Person:
             return f"Name: {self.name}, Age: {self.age}, Address: Not Provided"
 
 # Create an address
-address = Address(street="123 Main St", city="Springfield", postal_code="12345")
+address = Address(
+    street="123 Main St", city="Springfield", postal_code="12345"
+    )
 
 # Create a person and associate them with the address
 person = Person(name="John Doe", age=30, address=address)
@@ -51,6 +53,9 @@ another_person.set_address(address)
 # Get person info
 print(another_person.get_person_info())
 
+###############################################################################
+# B
+###############################################################################
 
 ###############################################################################
 # C
@@ -68,7 +73,9 @@ class MyClass:
 
     @classmethod
     def class_method(cls):
-        print(f"Class method called. cls.class_variable = {cls.class_variable}")
+        print(
+            f"Class method called. cls.class_variable = {cls.class_variable}"
+            )
 
     @classmethod
     def create_with_default(cls):
@@ -93,7 +100,7 @@ class Engine:
         self.type = type
 
     def start(self):
-        return f"The {self.type} engine with {self.horsepower} horsepower starts."
+        return f"The {self.type} engine with {self.horsepower} hp starts."
 
 class Tire:
     def __init__(self, brand, size):
@@ -256,7 +263,9 @@ print(person.city)    # Output: Unknown
 print(person.hobbies) # Output: ['Reading', 'Hiking']
 
 # Using the auto-generated __repr__ method
-print(person)  # Output: Person(name='Jane Doe', age=0, city='Unknown', hobbies=['Reading', 'Hiking'])
+print(person)  
+# Output: Person(name='Jane Doe', age=0, city='Unknown', 
+# hobbies=['Reading', 'Hiking'])
 
 ###############################################################################
 # Decorators -  tool that allows you to modify the behavior of a function or a 
@@ -345,6 +354,7 @@ def singleton(cls):
 @singleton
 class Database:
     pass
+
 ###############################################################################
 # Directive -       a statement or command that provides instructions to the 
 # Python interpreter. These directives can influence the behavior of the 
@@ -507,6 +517,14 @@ class ExampleDunderClass:
         pass
 
 ###############################################################################
+# E
+###############################################################################
+
+###############################################################################
+# F
+###############################################################################
+
+###############################################################################
 # G
 ###############################################################################
 # Generator -   a type of iterable, like a list or a tuple, but unlike lists, 
@@ -525,7 +543,25 @@ counter = count_up_to(5)
 for num in counter:
     print(num)
 
+###############################################################################
+# H
+###############################################################################
 
+###############################################################################
+# I
+###############################################################################
+
+###############################################################################
+# J
+###############################################################################
+
+###############################################################################
+# K
+###############################################################################
+
+###############################################################################
+# L
+###############################################################################
 
 ###############################################################################
 # M
@@ -559,6 +595,14 @@ g = Greeter()
 print(g.hello())
 
 ###############################################################################
+# N
+###############################################################################
+
+###############################################################################
+# O
+###############################################################################
+
+###############################################################################
 # P
 ###############################################################################
 # Protocol -    a way to define a set of methods and properties that a class 
@@ -575,7 +619,8 @@ class Animal(Protocol):
     def make_sound(self) -> None:
         ...
 
-# Implementing classes do not need to inherit from the protocol, but must implement the required methods
+# Implementing classes do not need to inherit from the protocol, but must 
+# implement the required methods
 class Dog:
     def make_sound(self) -> None:
         print("Bark")
@@ -588,12 +633,17 @@ class Cat:
 def make_animal_sound(animal: Animal) -> None:
     animal.make_sound()
 
-# Instances of Dog and Cat can be passed to the function because they adhere to the protocol
+# Instances of Dog and Cat can be passed to the function because they adhere to
+# the protocol
 dog = Dog()
 cat = Cat()
 
 make_animal_sound(dog)  # Outputs: Bark
 make_animal_sound(cat)  # Outputs: Meow
+
+###############################################################################
+# Q
+###############################################################################
 
 ###############################################################################
 # R
@@ -612,6 +662,10 @@ result = reduce(add, numbers)
 print(result)
 
 ###############################################################################
+# S
+###############################################################################
+
+###############################################################################
 # T
 ###############################################################################
 # Type hints -  a way of explicitly specifying the expected data types of 
@@ -620,3 +674,26 @@ print(result)
 def greet_th(name: str) -> str:
     return 'Hello, ' + name
 
+###############################################################################
+# U
+###############################################################################
+
+###############################################################################
+# V
+###############################################################################
+
+###############################################################################
+# W
+###############################################################################
+
+###############################################################################
+# X
+###############################################################################
+
+###############################################################################
+# Y
+###############################################################################
+
+###############################################################################
+# Z
+###############################################################################
