@@ -519,6 +519,54 @@ class ExampleDunderClass:
 ###############################################################################
 # E
 ###############################################################################
+# Enum -    (short for "enumeration") is a class that allows you to define 
+# symbolic names bound to unique, constant values. It provides a way to group 
+# related values and use them in a more readable and maintainable way. 
+# Enumerations are especially useful when you want to define a set of distinct, 
+# constant values with symbolic names, improving code clarity and reducing the 
+# chances of errors when dealing with constants.
+#
+# Python's enum module provides two main classes:
+# Enum:     This allows for the creation of enumerated constants.
+# Flag:     This is a specialized version of Enum, designed to support bitwise 
+# operations. This is useful when you want to combine multiple values into one 
+# using bitwise operators (&, |, ~, etc.).
+#
+# auto()    Automatically assigns unique values to enum members.
+
+from enum import Enum
+
+class Color(Enum):
+    RED = 1
+    GREEN = 2
+    BLUE = 3
+
+# Usage
+print(Color.RED)      # Output: Color.RED
+print(Color.RED.name) # Output: RED
+print(Color.RED.value) # Output: 1
+
+from enum import Flag, auto
+
+class Permission(Flag):
+    READ = auto()
+    WRITE = auto()
+    EXECUTE = auto()
+
+# Bitwise combination
+read_write = Permission.READ | Permission.WRITE
+print(read_write)  # Output: Permission.READ|WRITE
+print(Permission.EXECUTE in read_write)  # Output: False
+
+from enum import Enum, auto
+
+class Status(Enum):
+    NEW = auto()
+    IN_PROGRESS = auto()
+    COMPLETED = auto()
+
+print(Status.NEW)         # Output: Status.NEW
+print(Status.NEW.value)   # Output: 1 (automatically assigned value)
 
 ###############################################################################
 # F
